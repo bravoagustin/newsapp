@@ -16,6 +16,9 @@ export class NavbarComponent {
   constructor (private dialog: MatDialog) {}
 
   openCreateDialog() {
-    this.dialog.open(NewsFormComponent)
+    this.dialog.open(NewsFormComponent, {
+      width: '600px',
+      data: null
+    });
   }
 }

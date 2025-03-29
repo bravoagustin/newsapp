@@ -1,1 +1,21 @@
-<p>news-form works!</p>
+<div class="form-container">
+  <h2>{{ data ? 'Editar Noticia' : 'Crear Noticia' }}</h2>
+  <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Título*</label>
+      <input 
+        type="text" 
+        id="title" 
+        formControlName="title" 
+        placeholder="Ej: Evento deportivo"
+      >
+      <div class="error" *ngIf="newsForm.get('title')?.invalid && newsForm.get('title')?.touched">
+        Título es obligatorio
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="button" (click)="dialogRef.close()">Cancelar</button>
+      <button type="submit" [disabled]="newsForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>
