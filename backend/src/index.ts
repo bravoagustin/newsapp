@@ -1,16 +1,25 @@
-import sequelize from './database/database';
+import express from "express";
+import newsRoutes from "./routes/newsRoutes";
+import sequelize from "./database/database";
 
-const start = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('---Successful connection PostgreSQL.');
+const app = express();
 
-        await sequelize.sync({ force: false });
-        console.log('----Database synchronized successfully.');
+app.use(express.json());
 
-    } catch (error) {
-        console.error('Error connecting to database:', error);
-    }
-};
+app.use("/api", newsRoutes);
 
-start();
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(
+    `Server running on port 5000:  http://localhost:${PORT}/api/news`
+  );
+});
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("DB Sincronized");
+  })
+  .catch((error) => {
+    console.error("Error DB:", error);
+  });
