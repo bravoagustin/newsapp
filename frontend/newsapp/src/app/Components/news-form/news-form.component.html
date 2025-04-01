@@ -1,21 +1,45 @@
 <div class="form-container">
   <h2>{{ data ? 'Editar Noticia' : 'Crear Noticia' }}</h2>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
   <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="title">Título*</label>
-      <input 
-        type="text" 
-        id="title" 
-        formControlName="title" 
-        placeholder="Ej: Evento deportivo"
-      >
-      <div class="error" *ngIf="newsForm.get('title')?.invalid && newsForm.get('title')?.touched">
-        Título es obligatorio
-      </div>
-    </div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Título de la noticia" formControlName="title">
+      <mat-error *ngIf="newsForm.get('title')?.invalid && newsForm.get('title')?.touched">
+        El título es obligatorio
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Autor</mat-label>
+      <input matInput placeholder="Nombre del autor" formControlName="author">
+      <mat-error *ngIf="newsForm.get('author')?.invalid && newsForm.get('author')?.touched">
+        El autor es obligatorio
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>URL de imagen</mat-label>
+      <input matInput placeholder="URL de la imagen" formControlName="image_url">
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contenido</mat-label>
+      <textarea matInput placeholder="Contenido de la noticia" formControlName="content" rows="6"></textarea>
+      <mat-error *ngIf="newsForm.get('b')?.invalid && newsForm.get('content')?.touched">
+        El contenido es obligatorio
+      </mat-error>
+    </mat-form-field>
+    
     <div class="form-actions">
-      <button type="button" (click)="dialogRef.close()">Cancelar</button>
-      <button type="submit" [disabled]="newsForm.invalid">Guardar</button>
+      <button type="button" mat-button (click)="dialogRef.close()">Cancelar</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="newsForm.invalid || loading">
+        {{ loading ? 'Guardando...' : (data ? 'Actualizar' : 'Crear') }}
+      </button>
     </div>
   </form>
 </div>

@@ -1,1 +1,35 @@
-<p>details works!</p>
+<div class="container">
+  <button mat-button color="primary" routerLink="/" class="back-button">
+    <mat-icon>arrow_back</mat-icon> Volver
+  </button>
+
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <!-- <button mat-button color="primary" (click)="loadNewsDetails(news?.id)">Reintentar</button> -->
+    <button mat-button color="primary">Reintentar</button>
+  </div>
+
+  <mat-card *ngIf="news && !loading" class="news-details">
+    <img *ngIf="news.image_url" mat-card-image [src]="news.image_url" [alt]="news.title" class="news-image">
+    
+    <mat-card-header>
+      <mat-card-title>{{ news.title }}</mat-card-title>
+      <mat-card-subtitle *ngIf="news.content">{{ news.content }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="metadata">
+        <p class="author">Por: {{ news.author || 'Anónimo' }}</p>
+        <p class="date">{{ news.created_at| date:'dd/MM/yyyy HH:mm' }}</p>
+      </div>
+      
+      <div class="news-content">
+        {{ news.content }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

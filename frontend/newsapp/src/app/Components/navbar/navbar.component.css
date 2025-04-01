@@ -1,24 +1,14 @@
-.mat-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-.mat-toolbar span {
-    font-size: 24px;
-    font-weight: bold;
+.navbar {
+    background-color: #333;
+    padding: 1rem;
+  }
+  
+  .navbar a {
     color: white;
-}
-
-.spacer {
-    flex: 1 1 auto;
-}
-
-.mat-icon {
-    font-size: 30px;
-}
-
-.mat-icon {
-    font-size: 30px;
-}
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
