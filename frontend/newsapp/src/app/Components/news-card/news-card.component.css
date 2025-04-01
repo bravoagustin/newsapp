@@ -34,3 +34,8 @@ mat-card-content {
 .mat-card-actions {
   padding-top: 0;
 }
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 140px;
+}

@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadNews(): void {
-    this.loading = false;
+    this.loading = true;
     this.newsService.getAllNews().subscribe({
       next: (data) => {
         this.news = data;
