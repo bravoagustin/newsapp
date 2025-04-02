@@ -20,3 +20,12 @@ export interface ApiResponse<T> {
   message?: string;
   error?: string;
 }
+
+export interface CreateNewsDto {
+  title: string;
+  content: string;
+  author: string;
+  image_url: string | null;
+  created_at?: Date;
+  updated_at?: Date;
+}

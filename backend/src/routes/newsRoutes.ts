@@ -28,8 +28,8 @@ router.get("/news/:id", async (req: Request, res: Response): Promise<any> => {
 
 router.post("/news", async (req: Request, res: Response): Promise<any> => {
   try {
-    const { title, content } = req.body;
-    const news = await News.create({ title, content });
+    const { title, content, author, image_url } = req.body;
+    const news = await News.create({ title, content, author, image_url });
     return res.status(201).json(news);
   } catch (error) {
     return res.status(500).json({ message: "Error creating news", error });

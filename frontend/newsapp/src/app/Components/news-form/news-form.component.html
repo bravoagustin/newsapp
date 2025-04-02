@@ -41,5 +41,18 @@
         {{ loading ? 'Guardando...' : (data ? 'Actualizar' : 'Crear') }}
       </button>
     </div>
+    <div class="form-actions">
+      <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+      <button mat-raised-button 
+              color="primary" 
+              type="submit"
+              [disabled]="newsForm.invalid || loading">
+        <span *ngIf="!loading">{{ data.isEdit ? 'Actualizar' : 'Guardar' }}</span>
+        <span *ngIf="loading">
+          <mat-spinner diameter="24"></mat-spinner>
+          Procesando...
+        </span>
+      </button>
+    </div>
   </form>
 </div>

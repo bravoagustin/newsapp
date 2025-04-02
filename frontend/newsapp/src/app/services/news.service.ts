@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { News } from '../models/news.model';
+import { CreateNewsDto, News } from '../models/news.model';
 import { CreateNews } from '../models/news.model';
 import { environment } from '../../environments/environment';
 
@@ -21,11 +21,11 @@ export class NewsService {
     return this.http.get<News>(`${this.apiUrl}/${id}`);
   }
 
-  createNews(news: CreateNews): Observable<News> {
+  createNews(news: CreateNewsDto): Observable<News> {
     return this.http.post<News>(this.apiUrl, news);
   }
 
-  updateNews(id: string, news: Partial<CreateNews>): Observable<News> {
+  updateNews(id: string, news: Partial<CreateNewsDto>): Observable<News> {
     return this.http.put<News>(`${this.apiUrl}/${id}`, news);
   }
 
