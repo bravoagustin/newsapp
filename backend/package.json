@@ -4,11 +4,11 @@
   "description": "Backend with Express, NodeJS, PostgreSQL",
   "main": "index.js",
   "scripts": {
-    "build": "node ./node_modules/typescript/bin/tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts",
-    "start-dev": "tsc && npm run dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ng serve",
+    "build": "ng build --configuration production",
+    "vercel-build": "npm run build && cp src/index.html dist/browser/404.html",
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "keywords": [],
   "author": "",
