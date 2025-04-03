@@ -12,13 +12,13 @@ app.use("/api", newsRoutes);
 const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
-  'https://tu-frontend.vercel.app', // Reemplaza con tu dominio Vercel
-  'http://localhost:4200' // Desarrollo local
+  'https://newsapp-ebon-sigma.vercel.app/', // Reemplaza con tu dominio Vercel
+  'http://localhost:3000' // Desarrollo local
 ];
 
 app.use(cors({
   origin: allowedOrigins,
-  credentials: true // Si usas cookies/auth
+  credentials: true 
 }));
 
 app.listen(PORT, () => {
