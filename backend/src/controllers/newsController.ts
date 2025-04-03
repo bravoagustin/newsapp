@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import News from "../models/News";
+import News from "../models/news";
 import { Op } from "sequelize";
 
 export const getAllNews = async (res: Response): Promise<Response> => {
