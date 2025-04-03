@@ -11,7 +11,7 @@ const sequelize = new sequelize_1.Sequelize(process.env.DATABASE_URL, {
     dialectOptions: {
         ssl: {
             require: true,
-            rejectUnauthorized: false, // Necesario para Railway
+            rejectUnauthorized: false,
         },
     },
     logging: false,
