@@ -66,53 +66,28 @@ export class NewsFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    if (this.newsForm.valid) {
-      this.loading = true;
-      this.error = null;
-      const newsData = this.newsForm.value;
-
-      if (this.data?.isEdit && this.data.news?.id !== undefined) {
-        const newsId = this.data.news.id.toString();
-
-        this.newsService.updateNews(newsId, newsData).subscribe({
-          next: (result) => {
-            this.handleSuccess(result, 'Notice update');
-          },
-          error: (err) => {
-            this.handleError(err, 'Error update');
-          },
-        });
-      } else {
-        this.newsService.createNews(newsData).subscribe({
-          next: (result) => {
-            this.handleSuccess(result, 'Notice are not created');
-          },
-          error: (err) => {
-            this.handleError(err, 'Error in Notice');
-          },
-        });
+  onSubmit() {
+    if (this.newsForm.invalid) return;
+  
+    this.loading = true;
+    
+    this.newsService.createNews(this.newsForm.value).subscribe({
+      next: (response) => {
+        this.snackBar.open('Noticia guardada exitosamente', 'Cerrar', { duration: 3000 });
+        this.loading = false;
+        this.dialogRef.close(response);
+      },
+      error: (error) => {
+        console.error('Error al guardar la noticia', error);
+        this.loading = false;
+        this.snackBar.open('Hubo un error al guardar la noticia', 'Cerrar', { duration: 3000 });
       }
-    }
+    });
   }
 
   private handleSuccess(result: any, message: string): void {
     this.loading = false;
     this.snackBar.open(message, 'Close', { duration: 3000 });
     this.dialogRef.close(result);
-  }
-
-  private handleError(error: unknown, defaultMessage: string): void {
-    this.loading = false;
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : typeof error === 'string'
-        ? error
-        : defaultMessage;
-
-    this.error = errorMessage;
-    this.snackBar.open(errorMessage, 'Closer', { duration: 5000 });
-    console.error('Error:', error);
   }
 }
