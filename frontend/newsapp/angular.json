@@ -15,7 +15,7 @@
           "options": {
             "baseHref": "/",
             "deployUrl": "/",
-            "outputPath": "dist/browser",
+            "outputPath": "dist/newsapp",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

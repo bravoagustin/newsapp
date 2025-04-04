@@ -11,13 +11,10 @@ app.use("/api", newsRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigins = [
-  'https://newsapp-ebon-sigma.vercel.app/', // Reemplaza con tu dominio Vercel
-  'http://localhost:3000' // Desarrollo local
-];
-
 app.use(cors({
-  origin: allowedOrigins,
+    origin: 'https://tu-app.netlify.app',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
   credentials: true 
 }));
 
